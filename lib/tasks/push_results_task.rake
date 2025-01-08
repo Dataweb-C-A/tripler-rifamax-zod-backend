@@ -1,4 +1,3 @@
-/68
 # lib/tasks/push_results_task.rake
 desc 'Push results and set on database'
 task push_results_task: :environment do
