@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: schedules
+#
+#  id         :integer          not null, primary key
+#  hour       :string
+#  draw_id    :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_schedules_on_draw_id  (draw_id)
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hour: MyString
+  realtime: 2025-01-06 07:40:50
+  draw: one
+
+two:
+  hour: MyString
+  realtime: 2025-01-06 07:40:50
+  draw: two
