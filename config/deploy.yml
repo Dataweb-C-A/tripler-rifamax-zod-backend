@@ -7,7 +7,7 @@ image: javierd79/triple_rifamax_zod_backend
 # Deploy to these servers.
 servers:
   web:
-    - api.triplerifamaxzodiacal.com
+    - HOST
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -34,6 +34,7 @@ registry:
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:
   secret:
+    - HOST
     - KAMAL_REGISTRY_PASSWORD
     - RAILS_MASTER_KEY
   clear:
