@@ -10,8 +10,9 @@ task push_results_task: :environment do
 
   Draw.includes(:schedules).find_each do |draw|
     next unless draw.schedules.exists?(hour: current_hour)
+    next if draw.last_result_seen.strftime('%H:00') == current_hour
 
-    if draw.last_result_seen.nil? || draw.last_result_seen.strftime('%H:00') != current_hour || draw.key != 'rifamax'
+    if draw.last_result_seen.nil? || draw.key != 'rifamax'
       create_result_for_draw(draw, current_time, zodiacs)
     end
   end
@@ -26,7 +27,7 @@ def create_result_for_draw(draw, current_time, zodiacs)
   result = Result.new(number: result_number, sign: zodiac_sign, draw_id: draw.id, hour: current_time.strftime("%I:00 %p"))
 
   if result.save
-    draw.update!(last_result_seen: current_time)
+    draw.update_attribute :last_result_seen, Time.now
   else
     Rails.logger.error "Failed to save result for draw ##{draw.id}."
     raise Exception.new("Failed to save result for draw ##{draw.id}.")

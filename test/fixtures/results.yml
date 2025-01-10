@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  number     :integer
 #  sign       :string
+#  hour       :string
 #  draw_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

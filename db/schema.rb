@@ -27,6 +27,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_06_120411) do
   create_table "results", force: :cascade do |t|
     t.integer "number"
     t.string "sign"
+    t.string "hour"
     t.bigint "draw_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
