@@ -1,8 +1,6 @@
 # lib/tasks/push_results_task.rake
 desc 'Push results and set on database'
 task push_results_task: :environment do
-  Rails.logger.info "Running push_results_task in #{Rails.env} environment."
-
   current_time = Time.current
   current_hour = current_time.strftime('%H:00')
 
