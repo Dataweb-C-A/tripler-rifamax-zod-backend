@@ -24,7 +24,6 @@ module TripleRifamaxZodBackend
     # in config/environments, which are processed later.
     #
     config.time_zone = "America/Caracas"
-    config.active_record.time_zone = "America/Caracas"
     config.active_record.default_timezone = :local
     # config.eager_load_paths << Rails.root.join("extras")
 
