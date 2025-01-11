@@ -10,7 +10,10 @@ task push_results_task: :environment do
 
   Draw.includes(:schedules).find_each do |draw|
     next unless draw.schedules.exists?(hour: current_hour)
-    next if draw.last_result_seen.strftime('%H:00') == current_hour
+    
+    unless draw.last_result_seen.nil?
+      next if draw.last_result_seen.strftime('%H:00') == current_hour
+    end
 
     if draw.last_result_seen.nil? || draw.key != 'rifamax'
       create_result_for_draw(draw, current_time, zodiacs)
