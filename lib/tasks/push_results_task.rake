@@ -24,10 +24,11 @@ def create_result_for_draw(draw, current_time, zodiacs)
   result_number = SecureRandom.random_number(1..999)
   zodiac_sign = draw.key == 'zodiac' ? zodiacs.sample : nil
 
-  result = Result.new(number: result_number, sign: zodiac_sign, draw_id: draw.id, hour: current_time.strftime("%I:00 %p"))
+  result = Result.new(number: result_number, sign: zodiac_sign, draw_id: draw.id, hour: current_time.strftime("%I:00 %p"), serie: draw.last_serie.nil? ? 1 : draw.last_serie + 1)
 
   if result.save
     draw.update_attribute :last_result_seen, Time.now
+    draw.update_attribute :last_serie, draw.last_serie.nil? ? 1 : draw.last_serie + 1
   else
     Rails.logger.error "Failed to save result for draw ##{draw.id}."
     raise Exception.new("Failed to save result for draw ##{draw.id}.")

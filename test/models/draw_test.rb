@@ -10,6 +10,7 @@
 #  last_result_seen :datetime
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  last_serie       :integer
 #
 
 require "test_helper"

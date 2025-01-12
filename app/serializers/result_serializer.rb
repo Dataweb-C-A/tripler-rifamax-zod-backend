@@ -1,5 +1,5 @@
 class ResultSerializer < ActiveModel::Serializer
-  attributes :hour, :number, :sign, :showed_at, :draw
+  attributes :serie, :hour, :number, :sign, :showed_at, :draw
 
   def sign
     if object.sign.nil?
