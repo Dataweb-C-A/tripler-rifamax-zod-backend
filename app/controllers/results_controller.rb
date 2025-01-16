@@ -25,6 +25,7 @@ class ResultsController < ApplicationController
       current_time: Time.now.strftime('%I:%M %p'),
       results: [grouped_results]
     }, status: :ok
+  end
 
   def weekly
     results = Result.where(created_at: (Time.zone.now - 7.days).beginning_of_day..Time.zone.now.end_of_day)
