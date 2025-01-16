@@ -21,7 +21,7 @@ class ResultsController < ApplicationController
 
     render json: {
       filter_by: 'Yesterday',
-      current_date: Time.yesterday.strftime('%d/%m/%Y'),
+      current_date: Time.now.yesterday.strftime('%d/%m/%Y'),
       current_time: Time.now.strftime('%I:%M %p'),
       results: [grouped_results]
     }, status: :ok
