@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :results do 
+    get 'yesterday', on: :collection
     get 'weekly', on: :collection
   end
   resources :schedules

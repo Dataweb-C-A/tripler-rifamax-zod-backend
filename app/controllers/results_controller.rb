@@ -13,17 +13,28 @@ class ResultsController < ApplicationController
     }, status: :ok
   end
 
+  def yesterday
+    results = Result.where(created_at: Time.zone.yesterday.beginning_of_day..Time.zone.yesterday.end_of_day)
+    serialized_results = ActiveModelSerializers::SerializableResource.new(results, each_serializer: ResultSerializer).as_json
+
+    grouped_results = group_results(serialized_results)
+
+    render json: {
+      filter_by: 'Daily',
+      current_date: Time.now.strftime('%d/%m/%Y'),
+      current_time: Time.now.strftime('%I:%M %p'),
+      results: [grouped_results]
+    }, status: :ok
+
   def weekly
     results = Result.where(created_at: (Time.zone.now - 7.days).beginning_of_day..Time.zone.now.end_of_day)
     serialized_results = ActiveModel::SerializableResource.new(results, each_serializer: ResultSerializer).as_json
-
-    grouped_results = group_results(serialized_results)
 
     render json: {
       filter_by: 'Weekly',
       current_date: Time.now.strftime('%d/%m/%Y'),
       current_time: Time.now.strftime('%I:%M %p'),
-      results: [grouped_results]
+      results: serialized_results
     }, status: :ok
   end
 
