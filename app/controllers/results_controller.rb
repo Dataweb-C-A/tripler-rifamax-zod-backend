@@ -20,8 +20,8 @@ class ResultsController < ApplicationController
     grouped_results = group_results(serialized_results)
 
     render json: {
-      filter_by: 'Daily',
-      current_date: Time.now.strftime('%d/%m/%Y'),
+      filter_by: 'Yesterday',
+      current_date: Time.yesterday.strftime('%d/%m/%Y'),
       current_time: Time.now.strftime('%I:%M %p'),
       results: [grouped_results]
     }, status: :ok
