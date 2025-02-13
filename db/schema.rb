@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_12_211900) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_12_150103) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -23,6 +23,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_12_211900) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "last_serie"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "name"
+    t.string "country"
+    t.string "state"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "raffles", force: :cascade do |t|
+    t.date "award_date"
+    t.string "status"
+    t.string "award"
+    t.integer "winner"
+    t.bigint "place_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_raffles_on_place_id"
   end
 
   create_table "results", force: :cascade do |t|
@@ -44,6 +64,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_12_211900) do
     t.index ["draw_id"], name: "index_schedules_on_draw_id"
   end
 
+  add_foreign_key "raffles", "places"
   add_foreign_key "results", "draws"
   add_foreign_key "schedules", "draws"
 end
