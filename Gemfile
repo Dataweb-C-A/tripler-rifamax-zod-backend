@@ -46,7 +46,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
-gem "redis", "~> 5.3"
+gem "redis", "~> 5.4"
 
 gem "whenever"
 
